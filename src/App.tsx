@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar"
 import mockup from "./assets/8.png"
 import PlaystoreSection from "./components/PlaystoreSection"
+import MetricsInsights from "./components/MetricsInsightSection"
 
 const App = () => {
   return (
@@ -71,9 +72,9 @@ const App = () => {
           </div>
         </div>
 
-        <section className="mt-12 text-center">
-          <h1 className="text-4xl">Numecis helps you make sense of your betting.</h1>
-          <h1 className="text-2xl text-gray-500">It gives you smart, simple, and actionable tips to budget better and grow your savings without the stress.</h1>
+        <section className="mt-12 mb-12 text-center">
+          <h1 className="text-2xl">Numecis helps you make sense of your betting.</h1>
+          <p className="text-2xl text-gray-500">It gives you smart, simple, and actionable tips to budget better and grow your savings without the stress.</p>
         </section>
 
         {/* Bottom gradient blob */}
@@ -90,6 +91,7 @@ const App = () => {
         </div>
 
         <PlaystoreSection />
+        <MetricsInsights />
 
       </div>
     </div>

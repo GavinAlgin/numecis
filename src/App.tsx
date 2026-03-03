@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar"
 import mockup from "./assets/8.png"
+import PlaystoreSection from "./components/PlaystoreSection"
 
 const App = () => {
   return (
@@ -50,7 +51,7 @@ const App = () => {
                 Get started
               </a>
               <a href="#" className="text-sm font-semibold text-gray-900">
-                Learn more →
+                See Features →
               </a>
             </div>
           </div>
@@ -87,6 +88,8 @@ const App = () => {
             className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
           />
         </div>
+
+        <PlaystoreSection />
 
       </div>
     </div>

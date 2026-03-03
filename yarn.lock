@@ -1209,12 +1209,12 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.3.tgz#67c8fad95454a7c7abebf74bb78ee74a44023358"
   integrity sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==
 
-framer-motion@^12.34.0:
-  version "12.34.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.0.tgz#0cecdf015cc4cbee55bd53130d043137642a5ced"
-  integrity sha512-+/H49owhzkzQyxtn7nZeF4kdH++I2FWrESQ184Zbcw5cEqNHYkE5yxWxcTLSj5lNx3NWdbIRy5FHqUvetD8FWg==
+framer-motion@^12.34.5:
+  version "12.34.5"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.5.tgz#5e9939db3c4a0e48e677e2506dade0fa95126808"
+  integrity sha512-Z2dQ+o7BsfpJI3+u0SQUNCrN+ajCKJen1blC4rCHx1Ta2EOHs+xKJegLT2aaD9iSMbU3OoX+WabQXkloUbZmJQ==
   dependencies:
-    motion-dom "^12.34.0"
+    motion-dom "^12.34.5"
     motion-utils "^12.29.2"
     tslib "^2.4.0"
 
@@ -1478,10 +1478,10 @@ minimatch@^9.0.5:
   dependencies:
     brace-expansion "^2.0.1"
 
-motion-dom@^12.34.0:
-  version "12.34.0"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.0.tgz#d1776aaff750e09db66237c66daec31232a4cba8"
-  integrity sha512-Lql3NuEcScRDxTAO6GgUsRHBZOWI/3fnMlkMcH5NftzcN37zJta+bpbMAV9px4Nj057TuvRooMK7QrzMCgtz6Q==
+motion-dom@^12.34.5:
+  version "12.34.5"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.5.tgz#e37437937ecd9bd8fc2fa69e56067691e54139ad"
+  integrity sha512-k33CsnxO2K3gBRMUZT+vPmc4Utlb5menKdG0RyVNLtlqRaaJPRWlE9fXl8NTtfZ5z3G8TDvqSu0MENLqSTaHZA==
   dependencies:
     motion-utils "^12.29.2"
 

@@ -1,7 +1,9 @@
 import Navbar from "./components/Navbar"
 import mockup from "./assets/8.png"
-import PlaystoreSection from "./components/PlaystoreSection"
+// import PlaystoreSection from "./components/PlaystoreSection"
 import MetricsInsights from "./components/MetricsInsightSection"
+import StepsGuide from "./components/StepGuideSection"
+// import { SmartInsightsSection } from "./components/IntegrationSection"
 
 const App = () => {
   return (
@@ -41,7 +43,7 @@ const App = () => {
               Smart Number Strategies with Numecis
             </h1>
 
-            <p className="mt-6 text-lg font-medium text-gray-500 sm:text-xl">
+            <p className="mt-6 text-lg font-md text-[#c2c2c2] sm:text-xl">
               Predict, track, analyze and calculate – all in one clean and simple app.
             </p>
 
@@ -72,10 +74,10 @@ const App = () => {
           </div>
         </div>
 
-        <section className="mt-12 mb-12 text-center">
+        {/* <section className="mt-12 mb-12 text-center">
           <h1 className="text-2xl">Numecis helps you make sense of your betting.</h1>
           <p className="text-2xl text-gray-500">It gives you smart, simple, and actionable tips to budget better and grow your savings without the stress.</p>
-        </section>
+        </section> */}
 
         {/* Bottom gradient blob */}
         <div
@@ -89,9 +91,11 @@ const App = () => {
             className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
           />
         </div>
+        <StepsGuide />
 
-        <PlaystoreSection />
+        {/* <PlaystoreSection /> */}
         <MetricsInsights />
+        {/* <SmartInsightsSection /> */}
 
       </div>
     </div>

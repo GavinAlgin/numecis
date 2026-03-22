@@ -21,17 +21,26 @@ function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [userOpen, setUserOpen] = useState(false)
+type SidebarProps = {
+  mobileOpen: boolean
+  setMobileOpen: (v: boolean) => void
+  collapsed: boolean
+  setCollapsed: (v: boolean) => void
+}
 
+export default function Sidebar({
+  mobileOpen,
+  setMobileOpen,
+  collapsed,
+  setCollapsed,
+}: SidebarProps) {
+  const [userOpen, setUserOpen] = useState(false)
   const [user, setUser] = useState<any>(null)
   const [loadingUser, setLoadingUser] = useState(true)
 
-  // -----------------------------
-  // Fetch Supabase user session
-  // -----------------------------
+  /* =========================
+     USER SESSION
+  ========================= */
   useEffect(() => {
     let mounted = true
 
@@ -67,6 +76,9 @@ export default function Sidebar() {
     }
   }, [])
 
+  /* =========================
+     NAV ITEMS
+  ========================= */
   const navItems = [
     { name: "Dashboard", to: "/dashboard", icon: IconDashboard },
   ]
@@ -82,17 +94,12 @@ export default function Sidebar() {
     setUserOpen(false)
   }
 
+  /* =========================
+     UI
+  ========================= */
   return (
     <>
-      {/* Mobile Topbar */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-300 md:hidden">
-        <button onClick={() => setMobileOpen(true)}>
-          <PanelLeft className="size-5" />
-        </button>
-        <span className="font-semibold">Numecis</span>
-      </div>
-
-      {/* Overlay */}
+      {/* Overlay (mobile only) */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
@@ -103,12 +110,10 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed z-50 flex h-full flex-col bg-white transition-all duration-300",
+          "fixed z-50 flex h-full flex-col bg-white transition-transform duration-300",
           collapsed ? "w-16" : "w-64",
-          "md:relative",
-          mobileOpen
-            ? "translate-x-0"
-            : "-translate-x-full md:translate-x-0"
+          "md:relative md:translate-x-0",
+          mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
         {/* Header */}
@@ -116,6 +121,7 @@ export default function Sidebar() {
           {!collapsed && <span className="font-bold">Numecis</span>}
 
           <div className="flex items-center gap-2">
+            {/* Desktop collapse */}
             <button
               onClick={() => setCollapsed(!collapsed)}
               className="hidden md:flex p-1 rounded-md hover:bg-gray-100"
@@ -123,6 +129,7 @@ export default function Sidebar() {
               <PanelLeft className="size-5" />
             </button>
 
+            {/* Mobile close */}
             <button
               onClick={() => setMobileOpen(false)}
               className="md:hidden"
@@ -177,7 +184,7 @@ export default function Sidebar() {
             ))}
           </nav>
 
-          {/* USER SECTION */}
+          {/* USER */}
           <div className="relative">
             <button
               onClick={() => setUserOpen((prev) => !prev)}

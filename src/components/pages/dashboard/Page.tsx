@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LessonCard from "../../LessonCard";
 import Sidebar from "./Sidebar";
+import Header from "./Header"; // ✅ IMPORT HEADER
 import { supabase } from "../../api/supabase";
 import type { User } from "@supabase/supabase-js";
 import LessonImg from "../../../assets/pexels-codioful-7135013.jpg";
@@ -25,6 +26,10 @@ type Purchase = {
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
+
+  // ✅ SHARED SIDEBAR STATE
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   const [packages, setPackages] = useState<Package[]>([]);
   const [purchases, setPurchases] = useState<Purchase[]>([]);
@@ -170,144 +175,158 @@ export default function Dashboard() {
      UI
   ========================= */
   return (
-    <div className="flex h-screen">
-      <Sidebar />
+    <div className="flex h-screen overflow-hidden">
+      {/* SIDEBAR */}
+      <Sidebar
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
 
-      <main className="flex-1 overflow-y-auto p-6 max-w-6xl mx-auto">
-        <h2 className="text-xl font-semibold mb-4">
-          Dashboard
-        </h2>
+      {/* RIGHT SIDE (HEADER + CONTENT) */}
+      <div className="flex flex-1 flex-col">
+        {/* HEADER */}
+        <Header onOpenSidebar={() => setMobileOpen(true)} />
 
-        <p className="text-sm text-gray-500 mb-6">
-          Logged in as: {user.email}
-        </p>
+        {/* MAIN CONTENT */}
+        <main className="flex-1 overflow-y-auto p-6 max-w-6xl mx-auto w-full">
+          <h2 className="text-xl font-semibold mb-4">
+            Dashboard
+          </h2>
 
-        {/* =========================
-            CARDS
-        ========================= */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map((pkg) => {
-            const unlocked = isUnlocked(pkg.id);
+          <p className="text-sm text-gray-500 mb-6">
+            Logged in as: {user.email}
+          </p>
 
-            return (
-              <div key={pkg.id} className="relative">
-                <LessonCard
-                image={LessonImg} 
-                {...pkg}
-                locked={!unlocked}/>
-
-                {!unlocked && (
-                  <button
-                    onClick={() => handleBuy(pkg.id)}
-                    disabled={buyingId === pkg.id}
-                    className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-                  >
-                    {buyingId === pkg.id
-                      ? "Processing..."
-                      : `Buy for $${pkg.price}`}
-                  </button>
-                )}
-
-                {unlocked && (
-                  <p className="mt-2 text-green-600 text-sm font-medium">
-                    ✓ Unlocked
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* =========================
-            TABLE VIEW
-        ========================= */}
-        <div className="mt-10 bg-white rounded-lg">
-          <h3 className="text-lg font-semibold p-4 border-b">
-            Lesson Overview
-          </h3>
-
-          <div className="overflow-x-auto hidden md:block">
-            <table className="w-full text-left">
-              <tbody>
-                {packages.map((pkg) => {
-                  const unlocked = isUnlocked(pkg.id);
-
-                  return (
-                    <tr key={pkg.id} className="border-t">
-                      <td className="p-4 font-medium">
-                        {pkg.title || pkg.name}
-                      </td>
-
-                      <td className="p-4 text-gray-600">
-                        {pkg.description}
-                      </td>
-
-                      <td className="p-4">
-                        ${pkg.price}
-                      </td>
-
-                      <td className="p-4">
-                        {pkg.duration || "—"}
-                      </td>
-
-                      <td className="p-4">
-                        {unlocked ? (
-                          <span className="text-green-600">
-                            Unlocked
-                          </span>
-                        ) : (
-                          <button
-                            onClick={() => handleBuy(pkg.id)}
-                            className="text-blue-600 hover:underline"
-                          >
-                            Buy
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          {/* MOBILE */}
-          <div className="md:hidden divide-y">
+          {/* =========================
+              CARDS
+          ========================= */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {packages.map((pkg) => {
               const unlocked = isUnlocked(pkg.id);
 
               return (
-                <div key={pkg.id} className="p-4">
-                  <h4 className="font-semibold">
-                    {pkg.title || pkg.name}
-                  </h4>
+                <div key={pkg.id} className="relative">
+                  <LessonCard
+                    image={LessonImg}
+                    {...pkg}
+                    locked={!unlocked}
+                  />
 
-                  <p className="text-sm text-gray-500">
-                    {pkg.description}
-                  </p>
+                  {!unlocked && (
+                    <button
+                      onClick={() => handleBuy(pkg.id)}
+                      disabled={buyingId === pkg.id}
+                      className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+                    >
+                      {buyingId === pkg.id
+                        ? "Processing..."
+                        : `Buy for $${pkg.price}`}
+                    </button>
+                  )}
 
-                  <div className="flex justify-between mt-2">
-                    <span>${pkg.price}</span>
-
-                    {unlocked ? (
-                      <span className="text-green-600 text-sm">
-                        Unlocked
-                      </span>
-                    ) : (
-                      <button
-                        onClick={() => handleBuy(pkg.id)}
-                        className="text-blue-600 text-sm"
-                      >
-                        Buy
-                      </button>
-                    )}
-                  </div>
+                  {unlocked && (
+                    <p className="mt-2 text-green-600 text-sm font-medium">
+                      ✓ Unlocked
+                    </p>
+                  )}
                 </div>
               );
             })}
           </div>
-        </div>
-      </main>
+
+          {/* =========================
+              TABLE VIEW
+          ========================= */}
+          <div className="mt-10 bg-white rounded-lg">
+            <h3 className="text-lg font-semibold p-4 border-b">
+              Lesson Overview
+            </h3>
+
+            <div className="overflow-x-auto hidden md:block">
+              <table className="w-full text-left">
+                <tbody>
+                  {packages.map((pkg) => {
+                    const unlocked = isUnlocked(pkg.id);
+
+                    return (
+                      <tr key={pkg.id} className="border-t">
+                        <td className="p-4 font-medium">
+                          {pkg.title || pkg.name}
+                        </td>
+
+                        <td className="p-4 text-gray-600">
+                          {pkg.description}
+                        </td>
+
+                        <td className="p-4">
+                          ${pkg.price}
+                        </td>
+
+                        <td className="p-4">
+                          {pkg.duration || "—"}
+                        </td>
+
+                        <td className="p-4">
+                          {unlocked ? (
+                            <span className="text-green-600">
+                              Unlocked
+                            </span>
+                          ) : (
+                            <button
+                              onClick={() => handleBuy(pkg.id)}
+                              className="text-blue-600 hover:underline"
+                            >
+                              Buy
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* MOBILE */}
+            <div className="md:hidden divide-y">
+              {packages.map((pkg) => {
+                const unlocked = isUnlocked(pkg.id);
+
+                return (
+                  <div key={pkg.id} className="p-4">
+                    <h4 className="font-semibold">
+                      {pkg.title || pkg.name}
+                    </h4>
+
+                    <p className="text-sm text-gray-500">
+                      {pkg.description}
+                    </p>
+
+                    <div className="flex justify-between mt-2">
+                      <span>${pkg.price}</span>
+
+                      {unlocked ? (
+                        <span className="text-green-600 text-sm">
+                          Unlocked
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => handleBuy(pkg.id)}
+                          className="text-blue-600 text-sm"
+                        >
+                          Buy
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

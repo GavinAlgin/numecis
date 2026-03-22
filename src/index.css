@@ -12,3 +12,23 @@ body {
   box-sizing: border-box;
   background: #F3F3F3;
 }
+
+.input {
+  @apply w-full border rounded-md px-3 py-2;
+}
+
+.btn-primary {
+  @apply w-full bg-[#1B2BB8] text-white py-2 rounded-md;
+}
+
+.auth-container {
+  @apply flex min-h-screen items-center justify-center bg-white;
+}
+
+.auth-form {
+  @apply w-full max-w-sm space-y-4;
+}
+
+.link {
+  @apply text-sm text-[#1B2BB8] cursor-pointer;
+}

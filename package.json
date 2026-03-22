@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.3",
+    "@tabler/icons-react": "^3.40.0",
     "@tailwindcss/vite": "^4.1.18",
     "framer-motion": "^12.34.5",
+    "lucide-react": "^0.577.0",
     "react": "^19.2.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.13.1",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

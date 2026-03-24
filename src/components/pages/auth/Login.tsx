@@ -11,6 +11,8 @@ export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -22,10 +24,14 @@ export default function Login() {
       return toast.error("Password must be at least 6 characters");
     }
 
+    setLoading(true);
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+
+    setLoading(false);
 
     if (error) return toast.error(error.message);
 
@@ -95,9 +101,13 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-[#1B2BB8] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
+                disabled={loading}
+                className="flex w-full justify-center rounded-md bg-[#1B2BB8] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                {loading ? (
+                  <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  "Sign in"
+                )}
               </button>
             </div>
           </form>

@@ -5,7 +5,8 @@ import ProtectedRoute from "./components/controllers/ProtectedRoutes"
 import ForgotPassword from "./components/pages/auth/ForgotPassword"
 import Signup from "./components/pages/auth/SignUp"
 import Dashboard from "./components/pages/dashboard/Page"
-import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
+// import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
+import LessonWrapper from "./components/controllers/LessonWrapper"
 
 export default function App() {
   return (
@@ -16,13 +17,8 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Dashboards */}
-        <Route path="/Lessonplayer" element={<LessonPlayer/>} />
-        {/* <Route path="/analytics" element={<Page title="Analytics" />} /> */}
-        {/* <Route path="/projects" element={<Page title="Projects" />} />
-          <Route path="/team" element={<Page title="Team" />} />
-          <Route path="/settings" element={<Page title="Settings" />} />
-          <Route path="/help" element={<Page title="Help" />} />
-          <Route path="/search" element={<Page title="Search" />} />  */}
+        {/* <Route path="/lesson/:id" element={<LessonPlayer packageId={""} />} /> */}
+        <Route path="/lesson/:id" element={<ProtectedRoute><LessonWrapper /></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       </Routes>
   )

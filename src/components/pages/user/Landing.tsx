@@ -1,9 +1,9 @@
-import BentoSection from "../../BentoSection"
-import DownloadSection from "../../DownloadSection"
+// import BentoSection from "../../BentoSection"
+// import DownloadSection from "../../DownloadSection"
 import Footer from "../../Footer"
 import Navbar from "../../Navbar"
 import mockup from "../../../assets/8.png"
-import StepsGuide from "../../StepGuideSection"
+// import StepsGuide from "../../StepGuideSection"
 import CTASection from "../../CtaSection"
 
 import { motion, type Variants } from "framer-motion"

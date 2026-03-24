@@ -29,6 +29,9 @@ export default function LessonPlayer() {
   const [current, setCurrent] = useState(lessons[0]);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
   const handleNext = () => {
     const index = lessons.findIndex((l) => l.id === current.id);
     if (index < lessons.length - 1) {
@@ -38,7 +41,12 @@ export default function LessonPlayer() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar />
+      <Sidebar
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
 
       <div className="flex flex-1 relative">
         {/* Viewer */}

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "./api/supabase";
-import CourseImg from "../assets/pexels-codioful-7135013.jpg";
 
 interface Package {
   id: string;

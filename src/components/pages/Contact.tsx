@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { ChevronDownIcon } from "lucide-react";
 
 export default function Example() {
   return (

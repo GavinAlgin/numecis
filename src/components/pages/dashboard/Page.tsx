@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';import { supabase } from '../../api/supabase';
 import LessonCard from '../../LessonCard';
+import VideoLessons from './VideoLessons';
 
 
 const Dashboard = () => {
@@ -87,6 +88,7 @@ const Dashboard = () => {
           </div>
 
           <LessonCard />
+          <VideoLessons />
         </main>
       </div>
     </div>

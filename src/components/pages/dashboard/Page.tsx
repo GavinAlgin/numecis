@@ -4,7 +4,8 @@ import Sidebar from './Sidebar';
 import Header from './Header';import { supabase } from '../../api/supabase';
 import LessonCard from '../../LessonCard';
 import VideoLessons from './VideoLessons';
-
+import { Link } from 'react-router-dom';
+import { IconShoppingCartCheck } from '@tabler/icons-react';
 
 const Dashboard = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -12,6 +13,8 @@ const Dashboard = () => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+
+  const cartCount = 1;
 
   useEffect(() => {
     const getUser = async () => {
@@ -76,10 +79,32 @@ const Dashboard = () => {
         <Header onOpenSidebar={() => setMobileOpen(true)} />
 
         <main className="flex-1 overflow-y-auto p-6 max-w-6xl mx-auto w-full">
-          <h2 className="text-xl font-semibold mb-4">Dashboard</h2>
-          <p className="text-sm text-gray-500 mb-6">
-            Logged in as: {user.email}
-          </p>
+        <div className="w-full flex flex-col gap-6 mb-12">
+            {/* Top Row */}
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-xl font-semibold">Dashboard</h2>
+                <p className="text-sm text-gray-500">
+                  Logged in as: {user.email}
+                </p>
+              </div>
+
+              {/* Cart Button */}
+              <Link
+                to="/dashboard/cart"
+                className="relative flex items-center gap-2 bg-gray-200 px-5 py-3 rounded-2xl font-semibold hover:bg-gray-300 transition">
+                <IconShoppingCartCheck size={20} />
+                Cart
+
+                {/* Count Badge */}
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs px-2 py-0.5 rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+            </div>
+          </div>
 
           <div className='flex flex-col items-center justify-between p-4 bg-[#1B2BB8] text-white rounded-2xl mb-2.5'>
             <h2 className='text-xl font-semibold'>Welcome to Numecis E-Learning</h2>

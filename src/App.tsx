@@ -8,6 +8,10 @@ import Dashboard from "./components/pages/dashboard/Page"
 // import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
 import LessonWrapper from "./components/controllers/LessonWrapper"
 import AboutUs from "./components/pages/AboutUs"
+import Cart from "./components/pages/dashboard/Cart"
+import AccountSettings from "./components/pages/dashboard/ProfileSettings"
+import NotificationSettings from "./components/pages/dashboard/Settings"
+import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
 
 export default function App() {
   return (
@@ -21,9 +25,13 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Dashboards */}
+        <Route path="/dashboard/settings" element={<ProtectedRoute><NotificationSettings /></ProtectedRoute>} />
+        <Route path="/dashboard/profile" element={<ProtectedRoute><AccountSettings /></ProtectedRoute>} />
+        <Route path="/vidlesson/:id" element={<ProtectedRoute><LessonPlayer packageId={""} /></ProtectedRoute>} />
         {/* <Route path="/lesson/:id" element={<LessonPlayer packageId={""} />} /> */}
         <Route path="/lesson/:id" element={<ProtectedRoute><LessonWrapper /></ProtectedRoute>} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/dashboard/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
       </Routes>
   )
 }

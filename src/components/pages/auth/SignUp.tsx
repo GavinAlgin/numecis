@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateEmail, validatePassword } from "../../controllers/validation";
 import { supabase } from "../../api/supabase";
 import Logo from "../../../assets/numecis_logoIconRM.png";
@@ -138,9 +138,9 @@ export default function SignUp() {
             />
             <label className="ml-2 text-sm text-gray-600">
               I agree to the{" "}
-              <span className="text-indigo-600 font-medium cursor-pointer">
+              <Link to="/terms" className="text-indigo-600 font-medium cursor-pointer">
                 Terms & Conditions
-              </span>
+              </Link>
             </label>
           </div>
 

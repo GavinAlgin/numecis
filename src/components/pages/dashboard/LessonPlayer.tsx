@@ -25,6 +25,7 @@ export default function LessonPlayer({ packageId }: Props) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [resMobileOpen, setresMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
   /* =========================
@@ -111,8 +112,8 @@ export default function LessonPlayer({ packageId }: Props) {
   return (
     <div className="flex h-screen bg-gray-100">
       <Sidebar
-        mobileOpen={mobileOpen}
-        setMobileOpen={setMobileOpen}
+        mobileOpen={resMobileOpen}
+        setMobileOpen={setresMobileOpen}
         collapsed={collapsed}
         setCollapsed={setCollapsed}
       />

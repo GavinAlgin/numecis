@@ -12,12 +12,15 @@ import Cart from "./components/pages/dashboard/Cart"
 import AccountSettings from "./components/pages/dashboard/ProfileSettings"
 import NotificationSettings from "./components/pages/dashboard/Settings"
 import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
+import TermsConditions from "./components/pages/user/Terms&Conditions"
 
 export default function App() {
   return (
       <Routes>
+        {/** Home Routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/terms" element={<TermsConditions />} />
 
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />

@@ -87,12 +87,12 @@ const Footer: React.FC = () => {
 
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="/privacy" className="hover:text-white transition">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="/terms" className="hover:text-white transition">
                   Terms of Service
                 </a>
               </li>
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="/privacy" className="hover:text-white transition">
                   Data Protection
                 </a>
               </li>

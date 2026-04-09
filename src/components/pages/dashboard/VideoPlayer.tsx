@@ -12,28 +12,49 @@ type Content = {
 
 export default function LessonPlayer() {
   const { id } = useParams();
+
   const [contents, setContents] = useState<Content[]>([]);
   const [current, setCurrent] = useState<Content | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!id) return; // ✅ prevent bad query
     fetchContent();
   }, [id]);
 
   async function fetchContent() {
+    setLoading(true);
+
     const { data, error } = await supabase
       .from("lesson_contents")
       .select("*")
       .eq("lesson_id", id)
-      .order("order");
+      .order("order", { ascending: true });
 
-    if (error) console.error(error);
-    else {
-      setContents(data || []);
-      setCurrent(data?.[0] || null);
+    if (error) {
+      console.error("Supabase error:", error);
+      setLoading(false);
+      return;
     }
+
+    if (!data || data.length === 0) {
+      console.warn("No lesson content found");
+      setContents([]);
+      setCurrent(null);
+      setLoading(false);
+      return;
+    }
+
+    setContents(data);
+    setCurrent(data[0]);
+    setLoading(false);
   }
 
-  if (!current) return <p className="p-4">Loading...</p>;
+  // ✅ Proper states
+  if (loading) return <p className="p-4">Loading lesson...</p>;
+
+  if (!current)
+    return <p className="p-4 text-red-500">No content available for this lesson.</p>;
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -46,7 +67,7 @@ export default function LessonPlayer() {
         <div className="flex-1 bg-black flex items-center justify-center">
           {current.type === "video" && (
             <video controls className="w-full h-full">
-              <source src={current.url} />
+              <source src={current.url} type="video/mp4" />
             </video>
           )}
 

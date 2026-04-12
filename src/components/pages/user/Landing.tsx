@@ -1,4 +1,4 @@
-// import BentoSection from "../../BentoSection"
+import BentoSection from "../../BentoSection"
 // import DownloadSection from "../../DownloadSection"
 import Footer from "../../Footer"
 import Navbar from "../../Navbar"
@@ -156,14 +156,13 @@ export default function LandingPage() {
           </motion.div>
 
           {/* BENTO */}
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: false }}
-          >
+            viewport={{ once: false }}>
             <BentoSection />
-          </motion.div> */}
+          </motion.div>
 
           {/* DOWNLOAD */}
           {/* <motion.div

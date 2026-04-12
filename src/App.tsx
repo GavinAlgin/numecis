@@ -13,6 +13,8 @@ import AccountSettings from "./components/pages/dashboard/ProfileSettings"
 import NotificationSettings from "./components/pages/dashboard/Settings"
 import LessonPlayer from "./components/pages/dashboard/LessonPlayer"
 import TermsConditions from "./components/pages/user/Terms&Conditions"
+import Support from "./components/pages/Contact"
+import Pricing from "./components/pages/user/Pricing"
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/contact" element={<Support />} />
+        <Route path="/pricing" element={<Pricing />} />
 
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />

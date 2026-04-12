@@ -1,58 +1,128 @@
 import { motion } from "framer-motion";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const About = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div>
       <Navbar />
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-2xl text-center">
+      <main className="bg-gray-50">
 
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-2xl md:text-5xl font-semibold text-gray-800 mb-6">
-          The Numecis <span className="text-[#1B2BB8]">Journey</span>
-        </motion.h1>
+        {/* HERO SECTION */}
+        <div className="flex flex-col md:flex-row min-h-[90vh]">
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="text-gray-600 text-lg font-medium leading-relaxed mb-6">
-            From vision to value - discover how numecis empowers you to take control of your betting future.
-        </motion.p>
+          {/* LEFT: Background Image */}
+          <div
+            className="w-full md:w-1/2 h-[300px] md:h-auto bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f')",
+            }}
+          />
 
-        {/* Image */}
-        <motion.img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-          alt="Team"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mx-auto w-[800] h-[900] object-cover rounded-2xl mt-6"
-        />
-
-        <div className="text-center mt-6">
+          {/* RIGHT: Content */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-block mb-2.5 px-4 py-1 text-sm font-semibold bg-blue-100 text-[#1B2BB8] rounded-full">
-            Our Mission
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 flex items-center justify-center px-6 py-12"
+          >
+            <div className="max-w-xl text-center md:text-left">
+              <h1 className="text-3xl md:text-5xl font-semibold text-gray-800 mb-6">
+                The Numecis{" "}
+                <span className="text-[#1B2BB8]">Journey</span>
+              </h1>
+
+              <p className="text-gray-600 text-lg font-medium leading-relaxed">
+                From vision to value - discover how numecis empowers you to take
+                control of your betting future.
+              </p>
+            </div>
           </motion.div>
-          <h1 className="m-4 font-semibold text-4xl text-[#1B2BBB]">Empowering individuals to achieve financial freedom through intuitive and personalized learning</h1>
         </div>
 
+        {/* MISSION SECTION */}
+        <div className="max-w-4xl mx-auto px-4 py-20">
 
-      </motion.div>
+          {/* Badge */}
+          <div className="text-center">
+            <div className="inline-block mb-4 px-4 py-1 text-sm font-semibold bg-blue-100 text-[#1B2BB8] rounded-full">
+              Our Mission
+            </div>
+
+            <h2 className="text-2xl md:text-4xl font-semibold text-[#1B2BBB] mb-12">
+              Empowering individuals to achieve financial freedom through
+              intuitive and personalized learning
+            </h2>
+          </div>
+
+          {/* STACKED LIST */}
+          <div className="flex flex-col">
+
+            {/* Item 1 */}
+            <div className="flex flex-col md:flex-row items-start gap-6 py-6">
+              <img
+                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+                alt="Mission 1"
+                className="w-full md:w-32 h-32 object-cover rounded-xl"
+              />
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  Smart Learning
+                </h3>
+                <p className="text-gray-600">
+                  We provide intuitive tools that simplify complex betting
+                  strategies into easy learning experiences.
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-gray-200" />
+
+            {/* Item 2 */}
+            <div className="flex flex-col md:flex-row items-start gap-6 py-6">
+              <img
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                alt="Mission 2"
+                className="w-full md:w-32 h-32 object-cover rounded-xl"
+              />
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  Data-Driven Insights
+                </h3>
+                <p className="text-gray-600">
+                  Our platform leverages analytics to guide smarter decisions
+                  and improve success rates.
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-gray-200" />
+
+            {/* Item 3 */}
+            <div className="flex flex-col md:flex-row items-start gap-6 py-6">
+              <img
+                src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+                alt="Mission 3"
+                className="w-full md:w-32 h-32 object-cover rounded-xl"
+              />
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  Financial Growth
+                </h3>
+                <p className="text-gray-600">
+                  Helping users build sustainable strategies for long-term
+                  financial independence.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };

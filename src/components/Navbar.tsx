@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Company', href: '/aboutus' },
-  { name: 'Support', href: '#' },
+  { name: 'Support', href: '/contact' },
+  { name: 'Pricing', href: '/pricing' },
 ]
 
 const Navbar = () => {
